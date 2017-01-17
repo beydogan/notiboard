@@ -1,0 +1,7 @@
+<h1>Board List</h1>
+
+<div th:each="board : ${boards}">
+    <h3 th:text="${board.getName()}"></h3>
+</div>
+
+<a href="/boards/new">Create a new Board</a>

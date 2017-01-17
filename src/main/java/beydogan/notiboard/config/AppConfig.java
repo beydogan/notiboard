@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 import javax.sql.DataSource;
 
@@ -22,5 +23,14 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         dataSource.setUrl("jdbc:postgresql:spring_notiboard");
         dataSource.setUsername("postgres");
         return dataSource;
+    }
+
+    @Bean
+    public ServletContextTemplateResolver templateResolver() {
+        ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
+        resolver.setSuffix(".html");
+        resolver.setTemplateMode("HTML5");
+        resolver.setCacheable(false);
+        return resolver;
     }
 }
