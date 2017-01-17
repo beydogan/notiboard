@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      th:fragment="page">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Test</title>
+    <title>Layout page</title>
 </head>
 <body>
-layout page
-<div th:include="this :: content"/>
-layout footer
+<header>
+    <h1>My website</h1>
+</header>
+<section layout:fragment="content">
+    <p>Page content goes here</p>
+</section>
+<footer>
+    <p>My footer</p>
+    <p layout:fragment="custom-footer">Custom footer here</p>
+</footer>
 </body>
 </html>

@@ -1,7 +1,20 @@
-<h1>Board List</h1>
+<html layout:decorate="~{layout.html}">
+<head>
+    <title>Content page</title>
+    <script src="content-script.js"></script>
+</head>
+<body>
+<section layout:fragment="content">
+    <h1>Board List</h1>
 
-<div th:each="board : ${boards}">
-    <h3 th:text="${board.getName()}"></h3>
-</div>
+    <div th:each="board : ${boards}">
+        <h3 th:text="${board.getName()}"></h3>
+    </div>
 
-<a href="/boards/new">Create a new Board</a>
+    <a href="/boards/new">Create a new Board</a>
+</section>
+<footer>
+    <p layout:fragment="custom-footer">This is some footer content from the content page</p>
+</footer>
+</body>
+</html>
