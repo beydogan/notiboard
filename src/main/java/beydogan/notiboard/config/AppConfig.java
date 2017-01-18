@@ -1,6 +1,7 @@
 package beydogan.notiboard.config;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,8 +16,8 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 
 import javax.sql.DataSource;
 
+@EnableAutoConfiguration
 @Configuration
-@EnableWebMvc
 @ComponentScan("beydogan.notiboard")
 public class AppConfig extends WebMvcConfigurerAdapter {
 
