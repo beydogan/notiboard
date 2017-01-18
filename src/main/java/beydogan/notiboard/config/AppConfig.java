@@ -1,22 +1,23 @@
 package beydogan.notiboard.config;
 
-
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Description;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.spring4.SpringTemplateEngine;
-import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
-import nz.net.ultraq.thymeleaf.LayoutDialect;
+import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 
 import javax.sql.DataSource;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("beydogan")
+@ComponentScan("beydogan.notiboard")
 public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Bean(name = "dataSource")
@@ -28,21 +29,22 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return dataSource;
     }
 
-//    @Bean
-//    public ServletContextTemplateResolver templateResolver() {
-//        ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
-//        resolver.setSuffix(".html");
-//        resolver.setTemplateMode("HTML5");
-//        resolver.setCacheable(false);
-//        return resolver;
-//    }
-//
-//
-//    @Bean
-//    public SpringTemplateEngine templateEngine() {
-//        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-//        templateEngine.addTemplateResolver(templateResolver());
-//        templateEngine.addDialect(new LayoutDialect());
-//        return templateEngine;
-//    }
+    @Bean
+    @Description("Thymeleaf template engine with Spring integration")
+    public SpringTemplateEngine templateEngine() {
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver());
+        templateEngine.addDialect(new LayoutDialect());
+        return templateEngine;
+    }
+
+    @Bean
+    public SpringResourceTemplateResolver templateResolver() {
+        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
+        resolver.setPrefix("classpath:/templates/");
+        resolver.setSuffix(".html");
+        resolver.setCacheable(false);
+        return resolver;
+    }
+
 }

@@ -1,20 +1,14 @@
-<html layout:decorate="~{layout.html}">
-<head>
-    <title>Content page</title>
-    <script src="content-script.js"></script>
-</head>
-<body>
-<section layout:fragment="content">
-    <h1>Board List</h1>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+    <section layout:fragment="content">
+        <div class="container">
+            <h1>Board List</h1>
 
-    <div th:each="board : ${boards}">
-        <h3 th:text="${board.getName()}"></h3>
-    </div>
+            <div th:each="board : ${boards}">
+                <h3 th:text="${board.getName()}"></h3>
+            </div>
 
-    <a href="/boards/new">Create a new Board</a>
-</section>
-<footer>
-    <p layout:fragment="custom-footer">This is some footer content from the content page</p>
-</footer>
-</body>
+            <a href="/boards/new">Create a new Board</a>
+        </div>
+    </section>
 </html>

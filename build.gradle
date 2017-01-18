@@ -52,7 +52,6 @@ dependencies {
 	compile "org.hibernate:hibernate-entitymanager:${hibernateVersion}"
 	compile "org.springframework:spring-orm:${springVersion}"
 	compile "nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.1.2"
-
 	runtime('org.springframework.boot:spring-boot-devtools')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
